@@ -49,7 +49,7 @@ def predict():
     new_df['Transaction_Channel'] = le.fit_transform(new_df['Transaction_Channel'])
     
 
-    result = "Fraud" if model.predict(new_df)[0] == 1 else "Not Fraud"
+    result = model.predict(new_df)[0] 
     
     
     print("Prediction:",result)
