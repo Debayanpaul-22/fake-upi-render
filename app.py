@@ -14,18 +14,22 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    Transaction_Type = request.form.get('Transaction_Type')
-    Payment_Gateway = request.form.get('Payment_Gateway')
-    Transaction_City = request.form.get('Transaction_City')
-    Transaction_State = request.form.get('Transaction_State')
-    Transaction_Status = request.form.get('Transaction_Status')
-    Device_OS = request.form.get('Device_OS')
-    Transaction_Frequency = int(request.form.get('Transaction_Frequency'))
-    Merchant_Category = request.form.get('Merchant_Category')
-    Transaction_Channel = request.form.get('Transaction_Channel')
-    Transaction_Amount_Deviation =float(request.form.get('Transaction_Amount_Deviation'))
-    Days_Since_Last_Transaction =int( request.form.get('Days_Since_Last_Transaction'))
-    amount = float(request.form.get('amount'))
+    
+    data = request.get_json()
+    app.logger.debug(f"Received JSON: {data}")
+    
+    Transaction_Type = str(data.get('Transaction_Type'))
+    Payment_Gateway = str(data.get('Payment_Gateway'))
+    Transaction_City = str(data.get('Transaction_City'))
+    Transaction_State = str(data.get('Transaction_State'))
+    Transaction_Status = str(data.get('Transaction_Status'))
+    Device_OS = str(data.get('Device_OS'))
+    Transaction_Frequency = int(data.get('Transaction_Frequency'))
+    Merchant_Category = str(data.get('Merchant_Category'))
+    Transaction_Channel = str(data.get('Transaction_Channel'))
+    Transaction_Amount_Deviation =float(data.get('Transaction_Amount_Deviation'))
+    Days_Since_Last_Transaction =int( data.get('Days_Since_Last_Transaction'))
+    amount = float(data.get('amount'))
 
     input_quary = np.array([[Transaction_Type, Payment_Gateway, Transaction_City, Transaction_State, Transaction_Status
                                 , Device_OS, Transaction_Frequency, Merchant_Category, Transaction_Channel
