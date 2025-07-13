@@ -26,17 +26,17 @@ def predict():
         
     
 
-        Transaction_Type = data.get('Transaction_Type')
-        Payment_Gateway = data.get('Payment_Gateway')
-        Transaction_City = data.get('Transaction_City')
-        Transaction_State =data.get('Transaction_State')
-        Transaction_Status = data.get('Transaction_Status')
-        Device_OS = data.get('Device_OS')
-        Transaction_Frequency = data.get('Transaction_Frequency',None)
-        Merchant_Category = data.get('Merchant_Category')
-        Transaction_Channel =data.get('Transaction_Channel')
-        Transaction_Amount_Deviation =data.get('Transaction_Amount_Deviation',None)
-        Days_Since_Last_Transaction =data.get('Days_Since_Last_Transaction',None)
+        Transaction_Type = data.get('transaction_Type')
+        Payment_Gateway = data.get('payment_gateway')
+        Transaction_City = data.get('transaction_city')
+        Transaction_State =data.get('transaction_state')
+        Transaction_Status = data.get('transaction_status')
+        Device_OS = data.get('device_os')
+        Transaction_Frequency = data.get('transaction_frequency',None)
+        Merchant_Category = data.get('merchant_category')
+        Transaction_Channel =data.get('transaction_channel')
+        Transaction_Amount_Deviation =data.get('transaction_amount_deviation',None)
+        Days_Since_Last_Transaction =data.get('days_since_last_transaction',None)
         amount =data.get('amount',None)
         
         
