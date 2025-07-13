@@ -42,9 +42,9 @@ def predict():
         transaction_Frequency = str(Transaction_Frequency)
         merchant_Category = str(Merchant_Category)
         transaction_Channel = str(Transaction_Channel)
-        transaction_Amount_Deviation =float(Transaction_Amount_Deviation)
-        days_Since_Last_Transaction =int(Days_Since_Last_Transaction)
-        Amount = float(amount)
+        transaction_Amount_Deviation =str(Transaction_Amount_Deviation)
+        days_Since_Last_Transaction =str(Days_Since_Last_Transaction)
+        Amount = str(amount)
         
         
         
