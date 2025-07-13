@@ -19,6 +19,8 @@ def predict():
     
         data = request.get_json()
         app.logger.debug(f"Received JSON: {data}")
+        
+    
     
         Transaction_Type = data.get('Transaction_Type')
         Payment_Gateway = data.get('Payment_Gateway')
@@ -26,12 +28,24 @@ def predict():
         Transaction_State =data.get('Transaction_State')
         Transaction_Status = data.get('Transaction_Status')
         Device_OS = data.get('Device_OS')
-        Transaction_Frequency = data.get('Transaction_Frequency')
+        Transaction_Frequency = data.get('Transaction_Frequency',None)
         Merchant_Category = data.get('Merchant_Category')
         Transaction_Channel =data.get('Transaction_Channel')
-        Transaction_Amount_Deviation =data.get('Transaction_Amount_Deviation')
-        Days_Since_Last_Transaction =data.get('Days_Since_Last_Transaction')
-        amount =data.get('amount')
+        Transaction_Amount_Deviation =data.get('Transaction_Amount_Deviation',None)
+        Days_Since_Last_Transaction =data.get('Days_Since_Last_Transaction',None)
+        amount =data.get('amount',None)
+        
+        
+        # Validate it's not missing or string 'None'
+        if Transaction_Frequency is None or str(Transaction_Frequency).lower() == "none":
+            return jsonify({"error": "'Transaction_Frequency' must be a number, not 'None'"}), 40
+        if Transaction_Amount_Deviation is None or str(Transaction_Amount_Deviation).lower() == "none":
+            return jsonify({"error": "'Transaction_Amount_Deviation' must be a number, not 'None'"}), 40
+        if Days_Since_Last_Transaction is None or str(Days_Since_Last_Transaction).lower() == "none":
+            return jsonify({"error": "'Days_Since_Last_Transaction' must be a number, not 'None'"}), 40
+        if amount is None or str(amount).lower() == "none":
+            return jsonify({"error": "'Amount' must be a number, not 'None'"}), 40
+        
         
         transaction_Type = str(Transaction_Type)
         payment_Gateway = str(Payment_Gateway)
@@ -39,7 +53,7 @@ def predict():
         transaction_State = str(Transaction_State)
         transaction_Status = str(Transaction_Status)
         device_OS = str(Device_OS)
-        transaction_Frequency = str(Transaction_Frequency)
+        transaction_Frequency = int(Transaction_Frequency)
         merchant_Category = str(Merchant_Category)
         transaction_Channel = str(Transaction_Channel)
         transaction_Amount_Deviation =str(Transaction_Amount_Deviation)
@@ -50,7 +64,7 @@ def predict():
         
 
         input_quary = np.array([[transaction_Type, payment_Gateway, transaction_City, transaction_State, transaction_Status
-                                , device_OS, int(transaction_Frequency,base=10), merchant_Category, transaction_Channel
+                                , device_OS, transaction_Frequency, merchant_Category, transaction_Channel
                                 , float(transaction_Amount_Deviation), int(days_Since_Last_Transaction,base=10), float(Amount)]])
 
     
