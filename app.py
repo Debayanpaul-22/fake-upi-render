@@ -20,8 +20,12 @@ def predict():
         data = request.get_json()
         app.logger.debug(f"Received JSON: {data}")
         
+          
+        if not data:
+            return jsonify({"error": "Invalid or missing JSON"})
+        
     
-    
+
         Transaction_Type = data.get('Transaction_Type')
         Payment_Gateway = data.get('Payment_Gateway')
         Transaction_City = data.get('Transaction_City')
@@ -45,6 +49,7 @@ def predict():
             return jsonify({"error": "'Days_Since_Last_Transaction' must be a number, not 'None'"}), 40
         if amount is None or str(amount).lower() == "none":
             return jsonify({"error": "'Amount' must be a number, not 'None'"}), 40
+      
         
         
         transaction_Type = str(Transaction_Type)
