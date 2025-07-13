@@ -50,13 +50,14 @@ def predict():
         
 
         input_quary = np.array([[transaction_Type, payment_Gateway, transaction_City, transaction_State, transaction_Status
-                                , device_OS, int(transaction_Frequency), merchant_Category, transaction_Channel
-                                , float(transaction_Amount_Deviation), int(days_Since_Last_Transaction), float(Amount)]])
+                                , device_OS, int(transaction_Frequency,base=10), merchant_Category, transaction_Channel
+                                , float(transaction_Amount_Deviation), int(days_Since_Last_Transaction,base=10), float(Amount)]])
 
     
         new_df = pd.DataFrame(input_quary,columns=['Transaction_Type','Payment_Gateway','Transaction_City','Transaction_State','Transaction_Status'
                                                ,'Device_OS','Transaction_Frequency','Merchant_Category','Transaction_Channel','Transaction_Amount_Deviation'
                                                ,'Days_Since_Last_Transaction','amount'])
+        
     
         le = LabelEncoder()
         new_df['Transaction_Type'] = le.fit_transform(new_df['Transaction_Type'])
