@@ -20,22 +20,38 @@ def predict():
         data = request.get_json()
         app.logger.debug(f"Received JSON: {data}")
     
-        Transaction_Type = str(data.get('Transaction_Type'))
-        Payment_Gateway = str(data.get('Payment_Gateway'))
-        Transaction_City = str(data.get('Transaction_City'))
-        Transaction_State = str(data.get('Transaction_State'))
-        Transaction_Status = str(data.get('Transaction_Status'))
-        Device_OS = str(data.get('Device_OS'))
-        Transaction_Frequency = int(data.get('Transaction_Frequency'))
-        Merchant_Category = str(data.get('Merchant_Category'))
-        Transaction_Channel = str(data.get('Transaction_Channel'))
-        Transaction_Amount_Deviation =float(data.get('Transaction_Amount_Deviation'))
-        Days_Since_Last_Transaction =int( data.get('Days_Since_Last_Transaction'))
-        amount = float(data.get('amount'))
+        Transaction_Type = data.get('Transaction_Type')
+        Payment_Gateway = data.get('Payment_Gateway')
+        Transaction_City = data.get('Transaction_City')
+        Transaction_State =data.get('Transaction_State')
+        Transaction_Status = data.get('Transaction_Status')
+        Device_OS = data.get('Device_OS')
+        Transaction_Frequency = data.get('Transaction_Frequency')
+        Merchant_Category = data.get('Merchant_Category')
+        Transaction_Channel =data.get('Transaction_Channel')
+        Transaction_Amount_Deviation =data.get('Transaction_Amount_Deviation')
+        Days_Since_Last_Transaction =data.get('Days_Since_Last_Transaction')
+        amount =data.get('amount')
+        
+        transaction_Type = str(Transaction_Type)
+        payment_Gateway = str(Payment_Gateway)
+        transaction_City = str(Transaction_City)
+        transaction_State = str(Transaction_State)
+        transaction_Status = str(Transaction_Status)
+        device_OS = str(Device_OS)
+        transaction_Frequency = int(Transaction_Frequency)
+        merchant_Category = str(Merchant_Category)
+        transaction_Channel = str(Transaction_Channel)
+        transaction_Amount_Deviation =float(Transaction_Amount_Deviation)
+        days_Since_Last_Transaction =int(Days_Since_Last_Transaction)
+        Amount = float(amount)
+        
+        
+        
 
-        input_quary = np.array([[Transaction_Type, Payment_Gateway, Transaction_City, Transaction_State, Transaction_Status
-                                , Device_OS, Transaction_Frequency, Merchant_Category, Transaction_Channel
-                                , Transaction_Amount_Deviation, Days_Since_Last_Transaction, amount]])
+        input_quary = np.array([[transaction_Type, payment_Gateway, transaction_City, transaction_State, transaction_Status
+                                , device_OS, transaction_Frequency, merchant_Category, transaction_Channel
+                                , transaction_Amount_Deviation, days_Since_Last_Transaction, Amount]])
 
     
         new_df = pd.DataFrame(input_quary,columns=['Transaction_Type','Payment_Gateway','Transaction_City','Transaction_State','Transaction_Status'
